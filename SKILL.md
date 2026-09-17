@@ -252,7 +252,7 @@ metadata:
 - 环境：Node.js 16.14.0+，Windows/Linux/macOS；必需环境变量 `GUAIKEI_API_TOKEN`（https://www.guaikei.com 自助开通）。
 - 配置方式：Windows `set GUAIKEI_API_TOKEN=你的TOKEN`；Linux/macOS `export GUAIKEI_API_TOKEN=你的TOKEN`。
 - 合规：仅处理抖音公开数据；数据仅限个人/团队内部分析，禁止违规分发；调用会把关键词/链接发送至第三方 API，使用前请确认数据外发与授权范围。
-- 更多帮助：访问 [抖音数据获取技能官网](https://www.guaikei.com) 。
+- 更多帮助：访问 [抖音运营助手官网](https://www.guaikei.com) 。
 
 ## 11. ❓ 常见问题
 

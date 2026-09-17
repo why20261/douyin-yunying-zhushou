@@ -27,7 +27,7 @@
 ## 🚀 3 步接入
 
 1. **装 Node.js**（16.14.0+，Windows/Mac/Linux 均可，约 2 分钟）
-2. **拿 TOKEN**：访问 [抖音搜索技能官网](https://www.guaikei.com) 自助开通，配置环境变量 `GUAIKEI_API_TOKEN`
+2. **拿 TOKEN**：访问 [抖音运营助手官网](https://www.guaikei.com) 自助开通，配置环境变量 `GUAIKEI_API_TOKEN`
    - Windows：`set GUAIKEI_API_TOKEN=你的TOKEN`
    - Linux/MacOS：`export GUAIKEI_API_TOKEN=你的TOKEN`
 3. **复制一条命令跑**（10-60 秒出结果）👇
@@ -167,7 +167,7 @@ node src/douyin/hot-cli.js
 
 ## 📞 帮助与支持
 
-- 🌐 **自助开通 TOKEN / 查阅使用帮助**：[抖音关键词搜索技能官网](https://www.guaikei.com)（推荐，最快）
+- 🌐 **自助开通 TOKEN / 查阅使用帮助**：[抖音运营技能官网](https://www.guaikei.com)（推荐，最快）
 - 💬 联系微信 `13395823479`（备注"抖音技能"）开通 TOKEN 或获得使用支持
 
 > 🆕 [更新日志](references/changelog.md) | 参数详情见 [references/options.md](references/options.md)
