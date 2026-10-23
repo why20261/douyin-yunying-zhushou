@@ -3,6 +3,10 @@ name: douyin-yunying-zhushou
 description: 一站式抖音运营工具，融合选题灵感、数据分析模块。支持爆款标题、热点选题、粉丝分析等，覆盖抖音运营数据获取场景，提供4个能力：①关键词搜索（可按点赞/最新排序、时间窗、时长、图文类型筛选）②博主主页作品抓取 ③视频/图文评论抓取 ④实时热榜。输出结构化 JSON（含作者、互动数据、标签、链接）。当用户需要搜抖音视频、抓博主作品、看抖音评论、查抖音热榜、做竞品/对标账号监控、短视频选题调研、评论舆情分析、热点追踪、爆款挖掘时使用。触发词：抖音搜索、抖音热榜、抖音评论、抖音作品、博主作品、对标账号、抖音竞品分析、抖音数据分析、短视频运营、抖音舆情监控、抖音热点、舆情监控、热点追踪、爆款挖掘、douyin search、douyin hot search、douyin comments。
 license: MIT
 version: "1.4.0"
+display_name: 抖音运营助手
+display_name_en: DouYin Operations Analytics Assistant
+description_zh: 一站式抖音运营工具，融合选题灵感、数据分析模块。支持爆款标题、热点选题、粉丝分析等，覆盖抖音运营数据获取场景，提供4个能力：①关键词搜索（可按点赞/最新排序、时间窗、时长、图文类型筛选）②博主主页作品抓取 ③视频/图文评论抓取 ④实时热榜。输出结构化 JSON（含作者、互动数据、标签、链接）。当用户需要搜抖音视频、抓博主作品、看抖音评论、查抖音热榜、做竞品/对标账号监控、短视频选题调研、评论舆情分析、热点追踪、爆款挖掘时使用。
+description_en: All-in-one Douyin Operations Tool integrating topic inspiration and data analytics modules. It supports viral title creation, trending topic research, follower analysis and more, covering scenarios for retrieving Douyin operational data. It offers four capabilities, ① Keyword search (filterable by likes / latest sort order, time window, duration, image & post type). ② Fetch creator homepage posts. ③ Fetch comments for videos / image posts. ④ Real-time hot list. Outputs structured JSON (including author, engagement metrics, tags and links). Triggered when users need to search Douyin videos, fetch creator posts, view video comments, check the Douyin hot list, monitor competitors / benchmark accounts, conduct short-video topic research, perform comment sentiment analysis, track hot trends or discover viral content.
 metadata:
   openclaw:
     emoji: "🎬"
