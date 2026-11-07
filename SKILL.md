@@ -1,8 +1,8 @@
 ---
 name: douyin-yunying-zhushou
-description: 一站式抖音运营工具，融合选题灵感、数据分析模块。支持爆款标题、热点选题、粉丝分析等，覆盖抖音运营数据获取场景，提供4个能力：①关键词搜索（可按点赞/最新排序、时间窗、时长、图文类型筛选）②博主主页作品抓取 ③视频/图文评论抓取 ④实时热榜。输出结构化 JSON（含作者、互动数据、标签、链接）。当用户需要搜抖音视频、抓博主作品、看抖音评论、查抖音热榜、做竞品/对标账号监控、短视频选题调研、评论舆情分析、热点追踪、爆款挖掘时使用。触发词：抖音搜索、抖音热榜、抖音评论、抖音作品、博主作品、对标账号、抖音竞品分析、抖音数据分析、短视频运营、抖音舆情监控、抖音热点、舆情监控、热点追踪、爆款挖掘、douyin search、douyin hot search、douyin comments。
+description: "一站式抖音运营工具，融合选题灵感、数据分析模块。支持爆款标题、热点选题、粉丝分析等，覆盖抖音运营数据获取场景，提供4个能力：①关键词搜索（可按点赞/最新排序、时间窗、时长、图文类型筛选）②博主主页作品抓取 ③视频/图文评论抓取 ④实时热榜。输出结构化 JSON（含作者、互动数据、标签、链接）。当用户需要搜抖音视频、抓博主作品、看抖音评论、查抖音热榜、做竞品/对标账号监控、短视频选题调研、评论舆情分析、热点追踪、爆款挖掘时使用。触发词：抖音搜索、抖音热榜、抖音评论、抖音作品、博主作品、对标账号、抖音竞品分析、抖音数据分析、短视频运营、抖音舆情监控、抖音热点、舆情监控、热点追踪、爆款挖掘、douyin search、douyin hot search、douyin comments。"
 license: MIT
-version: "1.4.1"
+version: 1.4.2
 display_name: 抖音运营助手
 display_name_en: DouYin Operations Analytics Assistant
 description_zh: 一站式抖音运营工具，融合选题灵感、数据分析模块。支持爆款标题、热点选题、粉丝分析等，覆盖抖音运营数据获取场景，提供4个能力：①关键词搜索（可按点赞/最新排序、时间窗、时长、图文类型筛选）②博主主页作品抓取 ③视频/图文评论抓取 ④实时热榜。输出结构化 JSON（含作者、互动数据、标签、链接）。当用户需要搜抖音视频、抓博主作品、看抖音评论、查抖音热榜、做竞品/对标账号监控、短视频选题调研、评论舆情分析、热点追踪、爆款挖掘时使用。
@@ -19,7 +19,7 @@ metadata:
   enabled: true
   runtime: "nodejs@16.14.0+"
   env_desc:
-    GUAIKEI_API_TOKEN: "抖音数据 API 访问令牌。未配置时无法调用接口；可通过 https://www.guaikei.com 开通，或联系开发者(wx 13395823479)获取支持。"
+    GUAIKEI_API_TOKEN: "抖音数据 API 访问令牌。未配置时无法调用接口；可通过 https://www.guaikei.com 开通并获取支持。"
   keywords:
     - "抖音"
     - "抖音搜索"
@@ -104,7 +104,7 @@ metadata:
     - '这条视频的评论里有什么痛点 → 先确认至少取 50 条，同意后 node src/douyin/comment-cli.js --url "https://www.douyin.com/video/xxx" --limit 50，再读 references/demand-mining.md'
     - '这条视频多少播放、点赞和文案 → node src/douyin/detail-cli.js --url "https://www.douyin.com/video/xxx"'
     - '搜索结果里第 3 条不错，展开看看 → node src/douyin/detail-cli.js --url <上一条搜索结果里的 url>'
-    - '帮我找 1 分钟以内的减肥短视频，先来 50 条 → node src/douyin/search-cli.js --keyword "减肥" --duration 1 --limit 50'
+    - '帮我找 1 分钟以内的减肥短视频，先来 30 条 → node src/douyin/search-cli.js --keyword "减肥" --duration 1 --limit 30'
     - '半年内最火的 AI 教程图文 → node src/douyin/search-cli.js --keyword "AI 教程" --sort 1 --time 180 --content 2'
 ---
 
@@ -161,16 +161,18 @@ metadata:
 | `--time`     | `-t` |      | 0 全部 / 1 一天内 / 7 七天内 / 180 半年内      | 0    |
 | `--duration` | `-d` |      | 0 不限 / 1 1分钟以下 / 2 1-5分钟 / 3 5分钟以上 | 0    |
 | `--content`  | `-c` |      | 0 不限 / 1 视频 / 2 图文                       | 0    |
-| `--limit`    | `-l` |      | 1–10000                                        | 10   |
+| `--limit`    | `-l` |      | 1–10000（**包月 Token 实际最多 30**）              | 10   |
 
-**数量约定**：未指定 `--limit` 时只返回 10 条。用户说"全部/越多越好"再显式设 `--limit`，不要自作主张抓 10000 条。关键词以 `-` 开头时写成 `--keyword=-AI`，或 `node src/douyin/search-cli.js -- -AI`。
+**数量约定**：未指定 `--limit` 时只返回 10 条。用户说"全部/越多越好"再显式设 `--limit`，不要自作主张抓 10000 条。用户未说明套餐时优先默认 10；需要更多时先说明可能受套餐限制。关键词以 `-` 开头时写成 `--keyword=-AI`，或 `node src/douyin/search-cli.js -- -AI`。
+
+**套餐双上限（重要）**：技能侧硬上限为 10000（按量 Token）。**包月 Token** 超限会返回 `PLAN_LIMIT`（后端 errcode 14），不要当网络错误重试：搜索/作品最多 **30**，评论最多 **50**；详情与热榜无此条数限制。具体以官网与本次 `message` 为准。
 
 ### 4.2 博主作品 `post-cli.js`
 
 | 参数      | 缩写 | 必填 | 取值                                                                           | 默认 |
 | --------- | ---- | ---- | ------------------------------------------------------------------------------ | ---- |
 | `--url`   | `-u` | ✅   | `douyin.com/user/xxx`、`v.douyin.com/xxx` 短链，或 `sec_uid`（`MS4wLjA` 开头） | —    |
-| `--limit` | `-l` |      | 0–10000，**`0` = 只取博主互动数据**（关注数、粉丝数、总获赞）                  | 10   |
+| `--limit` | `-l` |      | 0–10000（**包月最多 30**；**`0` = 只取博主互动数据**）                          | 10   |
 
 成功时 `results` 是**对象**，含 `post`（作品数组）和 `user`（博主信息）。
 
@@ -179,7 +181,7 @@ metadata:
 | 参数      | 缩写 | 必填 | 取值                                                                                   | 默认 |
 | --------- | ---- | ---- | -------------------------------------------------------------------------------------- | ---- |
 | `--url`   | `-u` | ✅   | `douyin.com/video/xxx`、`douyin.com/note/xxx`、`v.douyin.com/xxx`，或纯数字 `aweme_id` | —    |
-| `--limit` | `-l` |      | 1–10000                                                                                | 10   |
+| `--limit` | `-l` |      | 1–10000（**包月最多 50**）                                                              | 10   |
 
 ### 4.4 作品详情 `detail-cli.js`
 
@@ -219,7 +221,7 @@ metadata:
 | "近一周最火的短视频"            | `--keyword "短视频" --time 7 --sort 1`       | 一周 → time=7               |
 | "半年内最火的 AI 教程"          | `--keyword "AI 教程" --sort 1 --time 180`    | 半年 → time=180             |
 | "减肥视频，只要 1 分钟以下的"   | `--keyword "减肥" --duration 1`              | 1分钟以下 → duration=1      |
-| "AI 模型的图文内容，前 50 条"   | `--keyword "AI 模型" --content 2 --limit 50` | 图文 → content=2            |
+| "AI 模型的图文内容，前 30 条"   | `--keyword "AI 模型" --content 2 --limit 30` | 图文 → content=2；包月勿超 30 |
 | "看看这个博主最近发了啥"        | `post-cli.js --url <主页链接> --limit 20`    | 未说条数 → 默认 10，可问    |
 | "他多少粉丝"                    | `post-cli.js --url <主页链接> --limit 0`     | 只要互动数据 → limit=0      |
 | "这条视频评论区在骂什么"        | `comment-cli.js --url <视频链接> --limit 40` | 舆情场景 → 适当加大 limit   |
@@ -234,7 +236,7 @@ stdout 只有一份统一信封（成功 / 空结果 / 错误结构相同）：
 ```json
 {
   "status": "success | empty | error",
-  "error_code": "OK | NO_MATCH | INVALID_KEYWORD | INVALID_URL | INVALID_ARGS | AUTH_REQUIRED | AUTH_ERROR | TIMEOUT | NETWORK_ERROR | HTTP_5xx | ...",
+  "error_code": "OK | NO_MATCH | INVALID_KEYWORD | INVALID_URL | INVALID_ARGS | AUTH_REQUIRED | AUTH_ERROR | PLAN_LIMIT | TIMEOUT | NETWORK_ERROR | HTTP_5xx | ...",
   "message": "人类可读的说明",
   "timestamp": "2026/10/20 21:30:00",
   "request": {
@@ -244,7 +246,7 @@ stdout 只有一份统一信封（成功 / 空结果 / 错误结构相同）：
     "limit": 20
   },
   "metadata": {
-    "skill_version": "1.4.1",
+    "skill_version": "1.4.2",
     "runtime_version": "22.x",
     "execution_time": 34210
   },
@@ -271,7 +273,8 @@ stdout 只有一份统一信封（成功 / 空结果 / 错误结构相同）：
 
 | error_code                     | 退出码 | 含义                                   | Agent 必须做什么                                                                |
 | ------------------------------ | ------ | -------------------------------------- | ------------------------------------------------------------------------------- |
-| `AUTH_REQUIRED` / `AUTH_ERROR` | 3      | token 未配置 / 无效或过期              | **禁止重试**。引导到 [抖音关键词搜索SKILL](https://www.guaikei.com) 自助开通并配置 `GUAIKEI_API_TOKEN` |
+| `AUTH_REQUIRED` / `AUTH_ERROR` | 3      | token 未配置 / 无效或过期              | **禁止重试**。引导到 [GUAIKEI 抖音运营助手](https://www.guaikei.com) 自助开通并配置 `GUAIKEI_API_TOKEN` |
+| `PLAN_LIMIT`                   | 1      | 套餐单次条数超限（常见于包月 Token）   | **禁止同参重试**。转述 `message`；可建议降低 `--limit`（搜索/作品≤30，评论≤50）或到官网升级按量；**须用户同意后再跑** |
 | `INVALID_KEYWORD`              | 1      | 关键词不合法（长度/是链接/含特殊符号） | 转述 `message`，请用户换词；**禁止自动改词重试**                                |
 | `INVALID_URL`                  | 1      | 无法识别链接或 ID，或链接类型传错      | 请用户提供：主页链接（post），或视频/图文链接（comment 评论、detail 详情）       |
 | `INVALID_ARGS`                 | 2      | 参数解析失败，或枚举/范围越界          | 按 `--help` 修正后重试**一次**；**禁止改成默认值后自动再跑**                    |
@@ -284,7 +287,7 @@ stdout 只有一份统一信封（成功 / 空结果 / 错误结构相同）：
 
 - 不得编造数据；不得把空结果说成有结果。
 - 不得在未征得用户同意的情况下自动修改搜索条件重试。
-- `AUTH_REQUIRED` / `AUTH_ERROR` 后不得重试。
+- `AUTH_REQUIRED` / `AUTH_ERROR` / `PLAN_LIMIT` 后不得同参重试；`PLAN_LIMIT` 不得擅自改成更大 `--limit`。
 - 不得把 stderr 中的日志文案原样转述给用户（stderr 仅诊断用，对外只报 `message` 与关键参数）。
 - 不得用本技能做登录态、私密数据获取或任何写操作。
 - 不得在未 cd 到技能目录的情况下执行 `node src/douyin/*.js`。
@@ -303,8 +306,8 @@ stdout 只有一份统一信封（成功 / 空结果 / 错误结构相同）：
 
 - 环境：Node.js 16.14.0+，Windows / Linux / macOS；必需环境变量 `GUAIKEI_API_TOKEN`。
 - 配置方式：Windows cmd `set GUAIKEI_API_TOKEN=你的TOKEN`；Windows PowerShell `$env:GUAIKEI_API_TOKEN="你的TOKEN"`；Linux/macOS `export GUAIKEI_API_TOKEN=你的TOKEN`。令牌为 16–256 位字母、数字、下划线或连字符。
-- 合规：仅处理抖音公开数据；调用会把关键词/链接发送至第三方 API（www.guaikei.com），使用前请确认数据外发与授权范围；数据仅限个人/团队内部分析，禁止违规分发。
-- 更多帮助：[抖音数据获取技能官网](https://www.guaikei.com)。
+- 合规：仅处理抖音公开数据；调用会把关键词/链接发送至第三方 API（ www.guaikei.com ），使用前请确认数据外发与授权范围；数据仅限个人/团队内部分析，禁止违规分发。
+- 更多帮助：[GUAIKEI 抖音运营助手官网](https://www.guaikei.com)。
 
 ## 12. ❓ 常见问题
 
@@ -312,5 +315,5 @@ stdout 只有一份统一信封（成功 / 空结果 / 错误结构相同）：
 - 结果太多：补场景/人群/品牌/时间/账号，并控制 `--limit`。
 - 调用失败：先看退出码——3 = token 问题；2 = 参数问题；1 = 关键词/链接/网络/服务端。
 - 播放地址和分享链接有时效，过期后需要重新获取。图文通常没有播放数和时长。
-- 计费与单次上限以官网说明为准，技能侧上限为 10000 条/次。
+- 计费与单次上限以官网说明为准。技能侧硬上限 10000 条/次（按量）；**包月**搜索/作品最多 30、评论最多 50，超限为 `PLAN_LIMIT`，不是网络故障。
 - 账号安全：只读能力，不登录/不发布/不点赞/不评论，无封号风险。
